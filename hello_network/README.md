@@ -81,6 +81,18 @@ mix firmware
 mix firmware.burn
 ```
 
+#### Ping to Establish Connectivity
+
+Install your sd card and reboot device. Now you should be able to ping your device: 
+
+```bash
+➔ ping hello_network.local
+PING hello_network.local (192.30.252.153): 56 data bytes
+64 bytes from 192.30.252.153: icmp_seq=0 ttl=64 time=422.733 ms
+64 bytes from 192.30.252.153: icmp_seq=1 ttl=64 time=5.878 ms
+...
+```
+
 #### WiFi Troubleshooting Tips
 
 If you cannot get a network connection, but you can get to the IEx prompt, you
@@ -248,6 +260,18 @@ Then you can have some fun by passing messages between the nodes as described
 in [the Elixir documentation][distribution].
 
 [distribution]: https://elixir-lang.org/getting-started/mix-otp/distributed-tasks-and-configuration.html#our-first-distributed-code
+
+### Getting a Remote Shell Over WiFi
+
+Getting a remote shell over wifi is just like starting any other iex prompt. Remember to use the cookie from `rel/vm.args`. 
+
+```bash
+iex --name host@0.0.0.0 \
+    --cookie chocolatechip \
+    --remsh hello_network@hello_network.local
+```
+
+Now you're running in the remote shell and you can issue commands directly on your nerves device. 
 
 ## Learn More
 
